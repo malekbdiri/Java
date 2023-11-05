@@ -6,6 +6,10 @@ import tn.esprit.gestionzoo.entities.Animal;
 import tn.esprit.gestionzoo.entities.Aquatic;
 import tn.esprit.gestionzoo.entities.Terrestrial;
 import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.ZooFullException;
+import tn.esprit.gestionzoo.entities.InvalidAgeException;
+
+
 
 public class Main {
     public static void main(String[] args) {
@@ -19,22 +23,21 @@ public class Main {
         Zoo myZoo = new Zoo("wildlife city", "Ariana");
         Zoo myZoo2 = new Zoo("new york city", "Tunis");
         myZoo.displayZoo();
-        System.out.println(myZoo);
-        System.out.println(myZoo.toString());
-        System.out.println(dog.toString());
-        System.out.println("--------------------");
-        myZoo.addAnimal(lion);
-        myZoo.addAnimal(dog);
-        System.out.println(myZoo.toString());
-        myZoo.displayAnimals();
-        System.out.println(myZoo.searchAnimal(dog));
-        System.out.println(myZoo.removeAnimal(lion));
 
-        System.out.println("-----------compar---------");
-        System.out.println(myZoo.isZooFull());
-        // System.out.println(Zoo.comparerZoo(myZoo2,myZoo));
-        myZoo.addAnimal(dog);
-        System.out.println(myZoo.toString());
+        try {
+            myZoo.addAnimal(lion);
+            myZoo.addAnimal(dog);
+            myZoo.addAnimal(lion);
+            myZoo.addAnimal(dog);
+              }
+        catch ( ZooFullException e){
+            System.out.println("Erreur: " + e.getMessage());
+        }
+        catch (InvalidAgeException a){System.out.println("Erreur: " + a.getMessage());}
+
+        myZoo.displayAnimals();
+
+
 
         Aquatic aquatic = new Aquatic("Fish", 2, "Sardine", "Sea", true);
         Terrestrial T = new Terrestrial("Panda", "Marla", 2, true, 12);
@@ -42,6 +45,16 @@ public class Main {
         System.out.println(aquatic);
         System.out.println(T);
         aquatic.swim();
+
+        myZoo.addAquaticAnimal(dophin);
+        myZoo.addAquaticAnimal(penguin);
+
+        myZoo.addAquaticAnimal(dolphin1);
+        myZoo.addAquaticAnimal(penguin1);
+
+        myZoo.displaySwimmingOfAquaticAnimals();
+        myZoo.maxPenguinSwimmingDepth();
+        myZoo.displayNumberOfAquaticsByType();
 
 
     }
