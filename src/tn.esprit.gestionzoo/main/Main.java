@@ -4,11 +4,13 @@
 package tn.esprit.gestionzoo.main;
 import tn.esprit.gestionzoo.entities.Animal;
 import tn.esprit.gestionzoo.entities.Aquatic;
+import tn.esprit.gestionzoo.entities.Dophin;
+import tn.esprit.gestionzoo.entities.Penguin;
 import tn.esprit.gestionzoo.entities.Terrestrial;
 import tn.esprit.gestionzoo.entities.Zoo;
-import tn.esprit.gestionzoo.entities.ZooFullException;
-import tn.esprit.gestionzoo.entities.InvalidAgeException;
-
+import tn.esprit.gestionzoo.entities.Food;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
 
 
 public class Main {
@@ -33,30 +35,62 @@ public class Main {
         catch ( ZooFullException e){
             System.out.println("Erreur: " + e.getMessage());
         }
-        catch (InvalidAgeException a){System.out.println("Erreur: " + a.getMessage());}
+        catch ( InvalidAgeException e){
+            System.out.println("Erreur: " + e.getMessage());}
 
         myZoo.displayAnimals();
 
 
+        Dophin d = new Dophin();
+        d.setSwimmingSpeed(24.5f);
+        Dophin d1 = new Dophin();
+        d1.setSwimmingSpeed(21.8f);
+        Dophin d2 = new Dophin();
+        d2.setSwimmingSpeed(20.3f);
+        Dophin d3 = new Dophin();
+        d3.setSwimmingSpeed(22.6f);
 
-        Aquatic aquatic = new Aquatic("Fish", 2, "Sardine", "Sea", true);
-        Terrestrial T = new Terrestrial("Panda", "Marla", 2, true, 12);
 
-        System.out.println(aquatic);
-        System.out.println(T);
-        aquatic.swim();
+        myZoo.addAquaticAnimal(d);
+        myZoo.addAquaticAnimal(d1);
+        myZoo.addAquaticAnimal(d2);
+        myZoo.addAquaticAnimal(d3);
+        Penguin p = new Penguin();
+        p.setSwimmingDepth(24.6f);
+        Penguin p1 = new Penguin();
+        p1.setSwimmingDepth(29.6f);
+        Penguin p2 = new Penguin();
+        p2.setSwimmingDepth(219.6f);
+        Penguin p3 = new Penguin();
+        p1.setSwimmingDepth(2.6f);
+        myZoo.addAquaticAnimal(p);
+        myZoo.addAquaticAnimal(p1);
+        myZoo.addAquaticAnimal(p2);
+        myZoo.addAquaticAnimal(p3);
+        myZoo.addAquaticAnimal(new Penguin());
 
-        myZoo.addAquaticAnimal(dophin);
-        myZoo.addAquaticAnimal(penguin);
 
-        myZoo.addAquaticAnimal(dolphin1);
-        myZoo.addAquaticAnimal(penguin1);
-
-        myZoo.displaySwimmingOfAquaticAnimals();
-        myZoo.maxPenguinSwimmingDepth();
-        myZoo.displayNumberOfAquaticsByType();
-
+        for (int i = 0; i < myZoo.getNbrAquatics(); i++) {
+            Aquatic[] aquatics = myZoo.getAquaticAnimals();
+            aquatics[i].swim();
+        }
 
     }
+
+    Terrestrial terrestrial = new Terrestrial("Panda", "Narla", 6, true, 2);
+        terrestrial.eatPlantAndMeet(Food.BOTH);
+
+    Terrestrial terrestrial2 = new Terrestrial("Rabbits", "Bugs bunny", 4, true, 2);
+        terrestrial2.eatPlants(Food.PLANTS);
+    Aquatic a = new Aquatic("Fish", "Sardine", 2, true, "Sea"){
+        public void swim() {
+            System.out.println("This aquatic animal swims.");
+        }
+    } ;
+
+        a.eatMeat(Food.MEAT);
+        penguin.eatMeat(Food.MEAT);
+
+}
 
 }

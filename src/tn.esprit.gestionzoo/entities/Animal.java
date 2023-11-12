@@ -1,11 +1,10 @@
 package tn.esprit.gestionzoo.entities;
 
-import tn.esprit.gestionzoo.entities.InvalidAgeException;
-
 public class Animal {
     private   String name;
     private String family;
     private int age;
+
     private boolean isMammal;
 
     public String getName()
@@ -19,25 +18,16 @@ public class Animal {
         this.name=name;
 
     }
-    public String getFamily()
-    {
-        return this.family;
-    }
     public void setFamily(String family)
     {
         this.family=family;
 
-    }
-    public Boolean getIsMammal()
-    {
-        return isMammal;
     }
     public void setIsMammal(Boolean isMammal)
     {
         this.isMammal=isMammal;
 
     }
-
     public int getAge()
     {
         return age;
